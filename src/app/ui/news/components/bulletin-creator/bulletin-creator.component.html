@@ -1,0 +1,33 @@
+<section class="bulletin-creator-container bulletin-creator-container-primary bulletin-creator-container-shadow">
+  <article class="bulletin-creator-box">
+    <div class="bulletin-creator-card">
+      <div class="bulletin-creator-card-header">
+        <p>¿What are you thinking?</p>
+      </div>
+      <div class="bulletin-creator-card-body">
+        <label>
+          <textarea class="bulletin-creator-textarea"></textarea>
+        </label>
+      </div>
+      <div class="bulletin-creator-card-footer">
+        <button (click)="createBulletin()" class="bulletin-creator-btn-option bulletin-creator-btn-post">
+          <span class="material-icons">
+            send
+          </span>
+        </button>
+        <button (click)="openModal()" class="bulletin-creator-btn-option bulletin-creator-btn-upload-file">
+          <span class="material-icons">
+            file_upload
+          </span>
+        </button>
+      </div>
+    </div>
+  </article>
+</section>
+<section>
+  <div *ngIf="showModal == true">
+    <app-modal></app-modal>
+  </div>
+</section>
+
+

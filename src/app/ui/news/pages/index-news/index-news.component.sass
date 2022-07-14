@@ -1,0 +1,44 @@
+@import "~src/app/ui/shared/sass/base_colors"
+$breakpoint-desktop: 1024px
+$breakpoint-tablet: 768px
+$breakpoint-phone: 640px
+
+.news-ui-scroll-container
+  margin: 50px
+
+  .index-news-container
+    display: flex
+    justify-content: space-between
+    box-sizing: border-box
+
+    .index-news-item-left-panel
+      width: 30%
+      max-width: 500px
+
+    .index-news-item-center-panel
+      width: 40%
+      max-width: 500px
+
+      .index-news-bulletin-feed
+        margin-top: 20px
+        height: 1000px
+
+    .index-news-item-right-panel
+      width: 30%
+      max-width: 500px
+
+@media screen and (max-width: $breakpoint-desktop)
+  .index-news-item-left-panel
+    display: none
+
+  .index-news-item-center-panel
+    width: 100% !important
+    max-width: 900px
+
+  .index-news-item-right-panel
+    display: none
+
+
+@media screen and (max-width: $breakpoint-tablet)
+
+

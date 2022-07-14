@@ -1,1 +1,16 @@
-<p>index-news works!</p>
+<div class="news-ui-scroll-container">
+  <article class="index-news-container">
+    <section class="index-news-item-left-panel">
+    </section>
+    <section class="index-news-item-center-panel">
+      <section class="index-news-bulletin-creator">
+        <app-bulletin-creator></app-bulletin-creator>
+      </section>
+      <section class="index-news-bulletin-feed">
+        <app-news *ngFor="let bulletin of bulletins"></app-news>
+      </section>
+    </section>
+    <section class="index-news-item-right-panel">
+    </section>
+  </article>
+</div>

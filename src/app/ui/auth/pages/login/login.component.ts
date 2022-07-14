@@ -1,11 +1,13 @@
-import {HttpResponse} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {Store} from '@ngrx/store';
 import {CookieService} from 'ngx-cookie-service';
 import {Authorization} from '../../../../domain/models/user/Authorization';
 import {Credentials} from '../../../../domain/models/user/Credentials';
-import {GetUserUsecase} from '../../../../domain/usecase/get-user-usecase';
+import {GetUserUseCase} from '../../../../domain/usecase/get-user-usecase';
+import {userLogin} from '../../../../infraestructure/store/actions/user.actions';
+import {AppStates} from '../../../../infraestructure/store/app.states';
 
 @Component({
   selector: 'app-login',
@@ -16,11 +18,11 @@ export class LoginComponent implements OnInit {
   public loginFormGroup ?: FormGroup;
   public isCorrect ?: boolean;
 
-  constructor(private _formBuilder: FormBuilder, private _getUserUsecase: GetUserUsecase, private _cookieService: CookieService, private _router: Router) {
-    this.loginFormGroup = _formBuilder.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)])
-    })
+  constructor(private _formBuilder: FormBuilder,
+              private _getUserUseCase: GetUserUseCase,
+              private _cookieService: CookieService,
+              private _router: Router,
+              private _store: Store<AppStates>) {
   }
 
   ngOnInit(): void {
@@ -35,24 +37,17 @@ export class LoginComponent implements OnInit {
     this._finalize();
   }
 
-  public login() {
+  public login(): void {
     let credentials: Credentials = this._getCredentials();
-    this._getUserUsecase.login(credentials).subscribe((resp) => {
-      if (resp.status == 200) {
-        this.isCorrect = true;
-        this._saveCookie(resp.body!)
-        this._redirectToNews()
-      } else {
-        this.isCorrect = false
-      }
-    })
+    this._store.dispatch(userLogin({credentials: credentials}))
   }
 
-  _redirectToNews(){
-    this._router.navigateByUrl('news')
+  _redirectToNews() {
+    this._router.navigateByUrl('/news')
   }
+
   _saveCookie(authorization: Authorization) {
-    this._cookieService.set('jwt', authorization.token!)
+    this._cookieService.set('jwt', authorization.token!, new Date().getDate(), '/')
   }
 
   private _getCredentials(): Credentials {
@@ -60,6 +55,10 @@ export class LoginComponent implements OnInit {
   }
 
   private _initialize() {
+    this.loginFormGroup = this._formBuilder.group({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)])
+    })
 
   }
 

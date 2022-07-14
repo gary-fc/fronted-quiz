@@ -1,33 +1,39 @@
-<article class="container-fluid">
-  <section class="container-body row">
-    <div class="col-md-12 p-0">
-      <div class="img-bg jumbotron vertical-center">
-        <div class="container row--form">
-          <div class="center">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="card">
-                  <div class="card-header">
-                    Login
-                  </div>
-                  <div class="card-body">
-                    <form [formGroup]="loginFormGroup!">
-                      <div class="form-group">
-                        <label for="txtEmail">Email address</label>
-                        <input formControlName="email" type="email" class="form-control" id="txtEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
-                      </div>
-                      <div class="form-group">
-                        <label for="txtPassword">Password</label>
-                        <input formControlName="password" type="password" class="form-control" id="txtPassword" placeholder="Password" required>
-                      </div>
-                      <button type="submit" class="btn btn-primary" [disabled]="loginFormGroup!.invalid" (click)="login()">Login</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
+<article class="login-container">
+  <section class="login-background-container">
+    <div class="login-form-container login-card login-card-primary">
+      <div class="login-form">
+        <form [formGroup]="loginFormGroup!">
+          <div class="form-group">
+            <label for="txtEmail">Email address</label>
+            <input formControlName="email"
+                   type="email"
+                   class="form-control"
+                   id="txtEmail"
+                   aria-describedby="emailHelp"
+                   placeholder="Enter email"
+                   required>
           </div>
-        </div>
+
+          <div class="form-group">
+            <label for="txtPassword">Password</label>
+            <input formControlName="password"
+                   type="password"
+                   class="form-control"
+                   id="txtPassword"
+                   placeholder="Password"
+                   required>
+          </div>
+          <div class="form-group">
+            <p>Don’t have an account? <span><a [routerLink]="['/auth/register']">Sign up</a></span></p>
+
+          </div>
+
+          <button type="submit"
+                  class="login-btn"
+                  [disabled]="loginFormGroup!.invalid"
+                  (click)="login()">Login
+          </button>
+        </form>
       </div>
     </div>
   </section>

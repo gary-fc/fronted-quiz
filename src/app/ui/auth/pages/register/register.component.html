@@ -1,1 +1,85 @@
-<p>register works!</p>
+<section class="register-container">
+  <article class="register-background-container">
+    <div class="register-form-container register-card">
+      <div class="register-form">
+        <form [formGroup]="registerFormGroup!">
+          <div class="form-group">
+            <label for="txtAccountId">CI</label>
+            <input formControlName="accountId"
+                   type="text"
+                   class="form-control"
+                   id="txtAccountId"
+                   aria-describedby=""
+                   placeholder="Enter CI"
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label for="txtFirstName">First Name</label>
+            <input formControlName="firstName"
+                   type="text"
+                   class="form-control"
+                   id="txtFirstName"
+                   aria-describedby=""
+                   placeholder="Enter First Name"
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label for="txtLastName">Last Name</label>
+            <input formControlName="lastName"
+                   type="text"
+                   class="form-control"
+                   id="txtLastName"
+                   aria-describedby=""
+                   placeholder="Enter Last Name"
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label for="txtUsername">Username</label>
+            <input formControlName="username"
+                   type="text"
+                   class="form-control"
+                   id="txtUsername"
+                   aria-describedby=""
+                   placeholder="Enter Username"
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label for="txtEmail">Email address</label>
+            <input formControlName="email"
+                   type="email"
+                   class="form-control"
+                   id="txtEmail"
+                   aria-describedby="emailHelp"
+                   placeholder="Enter email"
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label for="txtPassword">Password</label>
+            <input formControlName="password"
+                   type="password"
+                   class="form-control"
+                   id="txtPassword"
+                   placeholder="Password"
+                   required>
+          </div>
+          <div class="form-group">
+            <p>Have an account? <span><a [routerLink]="['/auth/login']">Sign In</a></span></p>
+
+          </div>
+
+          <button type="submit"
+                  class="register-btn"
+                  [disabled]="registerFormGroup!.invalid"
+                  (click)="register()">Register
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </article>
+</section>
