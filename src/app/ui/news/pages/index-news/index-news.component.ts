@@ -1,16 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
 import {Bulletin} from '../../../../domain/models/bulletin/Bulletin';
-import {GetBulletinUseCase} from '../../../../domain/usecase/get-bulletin-usecase';
+import {loadBulletins} from '../../../../infraestructure/store/actions/bulletin.actions';
+import {AppStates} from '../../../../infraestructure/store/app.states';
+import {selectLoadBulettins} from '../../../../infraestructure/store/selectors/bulletin.selectors';
 
 @Component({
   selector: 'app-index-news',
   templateUrl: './index-news.component.html',
-  styleUrls: ['./index-news.component.sass']
+  styleUrls: ['./index-news.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class IndexNewsComponent implements OnInit {
-  public bulletins?: Array<Bulletin>;
+export class IndexNewsComponent implements OnInit, AfterViewInit {
+  public bulletins?: Bulletin[];
+  public obser?: Observable<Bulletin[]>;
 
-  constructor(private _getBulletinUseCase: GetBulletinUseCase) {
+  constructor(private _store: Store<AppStates>) {
   }
 
   ngOnInit(): void {
@@ -18,7 +24,6 @@ export class IndexNewsComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-
   }
 
   ngOnDestroy(): void {
@@ -26,13 +31,18 @@ export class IndexNewsComponent implements OnInit {
   }
 
   public getListBulletins(): void {
-    this._getBulletinUseCase.getListBulletins(0, 10).subscribe((resp) => {
-      this.bulletins = resp.body!;
-    })
+    this._store.dispatch(loadBulletins({pageNo: 0, pageSize: 5}))
+  }
+
+  private _listenLoadBulletins(): void {
+    this.obser = this._store.select(selectLoadBulettins) as Observable<Bulletin[]>;
   }
 
   private _initialize(): void {
-    this.getListBulletins()
+    this.getListBulletins();
+
+    this._listenLoadBulletins()
+
   }
 
   private _finalize(): void {

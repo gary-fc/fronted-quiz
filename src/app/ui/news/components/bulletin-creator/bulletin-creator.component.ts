@@ -2,8 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import jwt_decode from 'jwt-decode';
 import {CookieService} from 'ngx-cookie-service';
 import {Bulletin} from '../../../../domain/models/bulletin/Bulletin';
-import {GetBulletinUseCase} from '../../../../domain/usecase/get-bulletin-usecase';
 import {SwitchService} from '../../../../infraestructure/driven-adapter/switch/switch.service';
+import {createBulletin} from '../../../../infraestructure/store/actions/bulletin.actions';
+import {AppStates} from '../../../../infraestructure/store/app.states';
+import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-bulletin-creator',
@@ -13,7 +15,7 @@ import {SwitchService} from '../../../../infraestructure/driven-adapter/switch/s
 export class BulletinCreatorComponent implements OnInit {
   public showModal: boolean = false;
 
-  constructor(private modalSwitchService: SwitchService, private _cookieService: CookieService, private _getBulletinUseCase: GetBulletinUseCase) {
+  constructor(private modalSwitchService: SwitchService, private _cookieService: CookieService, private _store: Store<AppStates>) {
   }
 
   ngOnInit(): void {
@@ -28,11 +30,25 @@ export class BulletinCreatorComponent implements OnInit {
     this._finalize();
   }
 
+  public createBulletin(): void {
+
+    let token = this._getToken()
+    if (token) {
+      let decoded = BulletinCreatorComponent._decodeToken(token)
+      let bulletin: Bulletin = {
+        accountId: decoded.accountId,
+        senderUserId: 0,
+        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+      };
+      this._store.dispatch(createBulletin({bulletin: bulletin}))
+    }
+  }
+
   public openModal(): void {
     this.showModal = true;
   }
 
-  private _decodeToken(token: string): any {
+  private static _decodeToken(token: string): any {
     return jwt_decode(token);
   }
 
@@ -44,21 +60,6 @@ export class BulletinCreatorComponent implements OnInit {
     return null;
   }
 
-  public createBulletin(): void {
-
-    let token = this._getToken()
-    if (token) {
-      let decoded = this._decodeToken(token)
-      let bulletin: Bulletin = {
-        accountId: decoded.accountId,
-        senderUserId: 0,
-        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-      };
-      this._getBulletinUseCase.createBulletin(bulletin).subscribe((resp) => {
-        console.log(resp)
-      })
-    }
-  }
 
   private _initialize(): void {
 

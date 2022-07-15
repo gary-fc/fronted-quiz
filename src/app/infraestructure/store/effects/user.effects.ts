@@ -12,36 +12,32 @@ import {loadUser, userLogin, userLoginSuccess} from '../actions/user.actions';
 @Injectable()
 export class UserEffects {
 
-  constructor(private actions$: Actions, private _getUserUseCase: GetUserUseCase, private _cookieService: CookieService, private _router: Router) {
+  constructor(private actions$: Actions, private _getUserUseCase: GetUserUseCase, private _cookieService: CookieService) {
   }
 
   userLogin$ = createEffect(() => {
     return this.actions$.pipe(ofType(userLogin), mergeMap((action) => {
       return this._getUserUseCase.login({email: action.credentials.email, password: action.credentials.password}).pipe(map((resp) => {
-        console.log(resp);
         let auth: Authorization = {
           token: resp.body?.token
         };
         this._cookieService.set('jwt', JSON.stringify(auth), new Date().getDate() + 7, '/');
-        console.log('test')
         return userLoginSuccess({auth: auth})
       }))
     }))
-  })
+  });
 
   userLoginSuccess$ = createEffect(() => {
     return this.actions$.pipe(ofType(userLoginSuccess), map((action) => {
-      console.log(action)
       let user: User = jwtDecode(action.auth.token!);
       return loadUser({user: user})
     }))
-  })
+  });
 
   loadUser$ = createEffect(
     () => {
       return this.actions$.pipe(ofType(loadUser), tap((action) => {
         this._cookieService.set('user', JSON.stringify(action.user), new Date().getDate() + 7, '/');
-        this._router.navigateByUrl('news')
       }))
     },
     {dispatch: false}

@@ -4,7 +4,7 @@ import {UserStates} from '../states/user.states';
 
 export const userInitialState: UserStates = {
   user: null,
-  credential: null,
+  credentials: null,
   authorization: null,
 };
 

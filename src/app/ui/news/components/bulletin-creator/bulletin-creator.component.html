@@ -5,17 +5,22 @@
         <p>¿What are you thinking?</p>
       </div>
       <div class="bulletin-creator-card-body">
-        <label>
-          <textarea class="bulletin-creator-textarea"></textarea>
-        </label>
+        <form>
+          <label>
+            <textarea class="bulletin-creator-textarea"></textarea>
+          </label>
+          <div class="bulletin-creator-form-item">
+            <input class="bulletin-creator-input-form" placeholder="Insert URL">
+          </div>
+        </form>
       </div>
       <div class="bulletin-creator-card-footer">
-        <button (click)="createBulletin()" class="bulletin-creator-btn-option bulletin-creator-btn-post">
+        <button id="btnCreateBulletin"  class="bulletin-creator-btn-option bulletin-creator-btn-post" (click)="createBulletin()">
           <span class="material-icons">
             send
           </span>
         </button>
-        <button (click)="openModal()" class="bulletin-creator-btn-option bulletin-creator-btn-upload-file">
+        <button  class="bulletin-creator-btn-option bulletin-creator-btn-upload-file" (click)="openModal()">
           <span class="material-icons">
             file_upload
           </span>

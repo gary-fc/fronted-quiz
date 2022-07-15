@@ -14,7 +14,9 @@ import {UserGateway} from './domain/models/user/gateway/user-gateway';
 import {BulletinHttpService} from './infraestructure/driven-adapter/bulletin/bulletin-http.service';
 import {UserHttpService} from './infraestructure/driven-adapter/user/user-http.service';
 import {AuthInterceptor} from './infraestructure/interceptors/auth.interceptor';
+import {BulletinEffects} from './infraestructure/store/effects/bulletin.effects';
 import {UserEffects} from './infraestructure/store/effects/user.effects';
+import {_bulletinReducer} from './infraestructure/store/reducers/bulletin.reducers';
 import {_userReducer} from './infraestructure/store/reducers/user.reducers';
 import {UserLayoutComponent} from './ui/layout/user-layout/user-layout.component';
 import {SharedModule} from './ui/shared/shared.module';
@@ -30,9 +32,10 @@ import {SharedModule} from './ui/shared/shared.module';
     BrowserAnimationsModule,
     SharedModule,
     StoreModule.forRoot({
-      user: _userReducer
+      user: _userReducer,
+      bulletin: _bulletinReducer
     }),
-    EffectsModule.forFeature([UserEffects]),
+    EffectsModule.forFeature([UserEffects, BulletinEffects]),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([])
   ],

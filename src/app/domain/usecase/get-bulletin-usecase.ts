@@ -13,7 +13,7 @@ export class GetBulletinUseCase {
     return this._bulletinGateway.createBulletin(bulletin);
   }
 
-  public getListBulletins(pageNo: number, pageSize: number): Observable<HttpResponse<Array<Bulletin>>> {
+  public getListBulletins(pageNo: number, pageSize: number): Observable<HttpResponse<Bulletin[]>> {
     return this._bulletinGateway.getListBulletins(pageNo, pageSize);
   }
 }

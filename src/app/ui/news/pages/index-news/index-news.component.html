@@ -7,7 +7,7 @@
         <app-bulletin-creator></app-bulletin-creator>
       </section>
       <section class="index-news-bulletin-feed">
-        <app-news *ngFor="let bulletin of bulletins"></app-news>
+        <app-news *ngFor="let bulletin of obser | async"></app-news>
       </section>
     </section>
     <section class="index-news-item-right-panel">

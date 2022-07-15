@@ -13,10 +13,18 @@
         </label>
       </div>
       <div class="modal-card-body">
+        <div>
+          <label class="modal-card-label-upload-file modal-card-label-upload-file-primary" for="upload-file">
+            <span class="material-icons modal-card-icon-upload">
+              upload
+            </span>
+            <input id="upload-file" type="file" class="modal-card-upload-file">
+          </label>
 
+        </div>
       </div>
       <div class="modal-card-footer">
-        <button class="modal-btn-option-post modal-btn-option-post-primary" (click)="closeModal()">Post</button>
+        <button class="modal-btn-option-post modal-btn-option-post-primary" (click)="createBulletin()">Post</button>
       </div>
     </article>
   </section>

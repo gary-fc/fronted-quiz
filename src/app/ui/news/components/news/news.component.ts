@@ -12,4 +12,7 @@ export class NewsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // news-view /dumb
+  // news-container /smart
+
 }
