@@ -1,0 +1,12 @@
+<section class="comment-creator-container">
+  <form class="comment-creator-form">
+    <input class="comment-creator-input-comment"
+           placeholder="Insert comment"
+           [(ngModel)]="content"
+           name="content">
+    <button class="comment-creator-btn-send comment-creator-btn-send-primary"
+            (click)="createComment()">Send
+    </button>
+  </form>
+</section>
+

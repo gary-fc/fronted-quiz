@@ -4,7 +4,7 @@ import {AuthGuard} from './infraestructure/guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: 'news',
+    path: 'news-view',
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('./ui/news/news.module').then((m) => m.NewsModule),

@@ -18,9 +18,6 @@ export class BulletinEffects {
       }))
   })
 
-  loadBulletinsSuccess$ = createEffect(() => {
-    return this.actions$.pipe(ofType(loadBulletinsSuccess))
-  }, {dispatch: false})
 
   createBulletin$ = createEffect(
     () => {

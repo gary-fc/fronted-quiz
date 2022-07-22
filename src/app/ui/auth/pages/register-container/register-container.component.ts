@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
@@ -8,10 +8,11 @@ import {GetUserUseCase} from '../../../../domain/usecase/get-user-usecase';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.sass']
+  templateUrl: './register-container.component.html',
+  styleUrls: ['./register-container.component.sass'],
+  encapsulation: ViewEncapsulation.Emulated,
 })
-export class RegisterComponent implements OnInit {
+export class RegisterContainerComponent implements OnInit {
   public registerFormGroup ?: FormGroup;
   public isCorrect ?: boolean;
 

@@ -3,7 +3,8 @@ import {Router} from '@angular/router';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import jwtDecode from 'jwt-decode';
 import {CookieService} from 'ngx-cookie-service';
-import {map, mergeMap, tap} from 'rxjs/operators';
+import {of} from 'rxjs';
+import {catchError, map, mergeMap, tap} from 'rxjs/operators';
 import {Authorization} from '../../../domain/models/user/Authorization';
 import {User} from '../../../domain/models/user/User';
 import {GetUserUseCase} from '../../../domain/usecase/get-user-usecase';
@@ -16,15 +17,16 @@ export class UserEffects {
   }
 
   userLogin$ = createEffect(() => {
-    return this.actions$.pipe(ofType(userLogin), mergeMap((action) => {
-      return this._getUserUseCase.login({email: action.credentials.email, password: action.credentials.password}).pipe(map((resp) => {
-        let auth: Authorization = {
-          token: resp.body?.token
-        };
-        this._cookieService.set('jwt', JSON.stringify(auth), new Date().getDate() + 7, '/');
-        return userLoginSuccess({auth: auth})
+    return this.actions$.pipe(ofType(userLogin),
+      mergeMap((action) => {
+        return this._getUserUseCase.login({email: action.credentials.email, password: action.credentials.password}).pipe(map((resp) => {
+          let auth: Authorization = {
+            token: resp.body?.token
+          };
+          this._cookieService.set('jwt', JSON.stringify(auth), new Date().getDate() + 7, '/');
+          return userLoginSuccess({auth: auth})
+        }))
       }))
-    }))
   });
 
   userLoginSuccess$ = createEffect(() => {

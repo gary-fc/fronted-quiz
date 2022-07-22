@@ -21,7 +21,7 @@ context('Waiting', () => {
     // Listen to GET to comments/1
     cy.intercept('GET', '**/comments/*').as('getComment')
 
-    // we have code that gets a comment when
+    // we have code that gets a comment-view when
     // the button is clicked in scripts.js
     cy.get('.network-btn').click()
 

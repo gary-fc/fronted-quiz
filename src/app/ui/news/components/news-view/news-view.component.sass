@@ -27,14 +27,41 @@ $breakpoint-phone: 640px
       .news-card-header
         width: 100%
         height: max-content
+        display: flex
+        justify-content: flex-start
+        flex-direction: row
+        gap: 10px
+
+        .news-username
+          padding: 0
+          margin: 0
+
+        .news-container-avatar
+          vertical-align: middle
+          width: 50px
+          height: 50px
+          border-radius: 50%
+
+        .news-container-dropdown
+          padding: 0
+          cursor: pointer
+          margin-left: auto
+
+
+          li
+            height: 10px
+
 
       .news-card-body
         width: 100%
-        margin-top: 40px
+        margin-top: 20px
 
-        .news-card-header-img
+        .news-card-img
           width: 100%
           border-radius: 8px
+
+        .news-card-description
+          margin-top: 20px
 
       .news-card-footer
         width: 100%
@@ -51,6 +78,9 @@ $breakpoint-phone: 640px
 
         .news-btn-option:active
           box-shadow: none
+
+      .news-card-comments
+        margin-top: 20px
 
 
 

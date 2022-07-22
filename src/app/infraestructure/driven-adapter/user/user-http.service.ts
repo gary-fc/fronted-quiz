@@ -29,4 +29,9 @@ export class UserHttpService extends UserGateway {
       headers: {skip: 'true'}
     });
   }
+
+  public getUserByAccountId(accountId: number): Observable<HttpResponse<User>> {
+    return this._http.get(`${environment.base_url_auth}/api/users/byAccountId/${accountId}`,
+      {observe: 'response', headers: {skip: 'true'}})
+  }
 }

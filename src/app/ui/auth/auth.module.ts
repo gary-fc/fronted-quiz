@@ -1,21 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {EffectsModule} from '@ngrx/effects';
+import {StoreModule} from '@ngrx/store';
+import {ROOT_REDUCERS} from '../../infraestructure/store/app.states';
+import {UserEffects} from '../../infraestructure/store/effects/user.effects';
 import {SharedModule} from '../shared/shared.module';
 
 import { AuthRoutingModule } from './auth-routing.module';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
+import { LoginContainerComponent } from './pages/login-container/login-container.component';
+import { RegisterContainerComponent } from './pages/register-container/register-container.component';
 
 
 @NgModule({
   declarations: [
-    LoginComponent,
-    RegisterComponent
+    LoginContainerComponent,
+    RegisterContainerComponent
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
-    SharedModule
+    SharedModule,
+
   ],
 })
 export class AuthModule { }

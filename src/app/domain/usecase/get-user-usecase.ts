@@ -19,4 +19,8 @@ export class GetUserUseCase {
   public registerUser(user: User): Observable<HttpResponse<UserRegisterResponse>> {
     return this._userGateway.registerUser(user);
   }
+
+  public getUserByAccountId(accountId: number): Observable<HttpResponse<User>> {
+    return this._userGateway.getUserByAccountId(accountId);
+  }
 }

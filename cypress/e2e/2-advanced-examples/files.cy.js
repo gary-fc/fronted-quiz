@@ -25,7 +25,7 @@ context('Files', () => {
     // Cypress will intercept it and reply with the object in `example.json` fixture
     cy.intercept('GET', '**/comments/*', { fixture: 'example.json' }).as('getComment')
 
-    // we have code that gets a comment when
+    // we have code that gets a comment-view when
     // the button is clicked in scripts.js
     cy.get('.fixture-btn').click()
 

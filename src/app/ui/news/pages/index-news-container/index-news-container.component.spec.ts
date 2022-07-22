@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IndexNewsComponent } from './index-news.component';
+import { IndexNewsContainerComponent } from './index-news-container.component';
 
 describe('IndexNewsComponent', () => {
-  let component: IndexNewsComponent;
-  let fixture: ComponentFixture<IndexNewsComponent>;
+  let component: IndexNewsContainerComponent;
+  let fixture: ComponentFixture<IndexNewsContainerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ IndexNewsComponent ]
+      declarations: [ IndexNewsContainerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IndexNewsComponent);
+    fixture = TestBed.createComponent(IndexNewsContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

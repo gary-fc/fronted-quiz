@@ -29,7 +29,7 @@ context('Aliasing', () => {
     // Alias the route to wait for its response
     cy.intercept('GET', '**/comments/*').as('getComment')
 
-    // we have code that gets a comment when
+    // we have code that gets a comment-view when
     // the button is clicked in scripts.js
     cy.get('.network-btn').click()
 

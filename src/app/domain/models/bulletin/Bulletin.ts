@@ -1,5 +1,8 @@
 export interface Bulletin {
-  accountId?:    number;
+  id?: number;
+  accountId?: number;
   senderUserId?: number;
-  body?:         string;
+  body?: string;
+  fileUrl?: string;
+  createdDate?: string;
 }

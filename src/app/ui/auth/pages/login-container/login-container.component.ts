@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
@@ -13,10 +13,11 @@ import {selectLoadUser} from '../../../../infraestructure/store/selectors/user.s
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.sass']
+  templateUrl: './login-container.component.html',
+  styleUrls: ['./login-container.component.sass'],
+  encapsulation: ViewEncapsulation.Emulated,
 })
-export class LoginComponent implements OnInit {
+export class LoginContainerComponent implements OnInit, AfterViewInit, OnDestroy {
   public loginFormGroup ?: FormGroup;
   private _selectLoadUser?: Subscription;
 
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
 
   public login(): void {
     let credentials: Credentials = this._getCredentials();
+    console.log(credentials);
     this._store.dispatch(userLogin({credentials: credentials}))
   }
 

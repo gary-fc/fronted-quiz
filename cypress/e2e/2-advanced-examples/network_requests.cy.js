@@ -12,7 +12,7 @@ context('Network Requests', () => {
     cy.request('https://jsonplaceholder.cypress.io/comments')
       .should((response) => {
         expect(response.status).to.eq(200)
-        // the server sometimes gets an extra comment posted from another machine
+        // the server sometimes gets an extra comment-view posted from another machine
         // which gets returned as 1 extra object
         expect(response.body).to.have.property('length').and.be.oneOf([500, 501])
         expect(response).to.have.property('headers')
@@ -116,12 +116,12 @@ context('Network Requests', () => {
   it('cy.intercept() - route responses to matching requests', () => {
     // https://on.cypress.io/intercept
 
-    let message = 'whoa, this comment does not exist'
+    let message = 'whoa, this comment-view does not exist'
 
     // Listen to GET to comments/1
     cy.intercept('GET', '**/comments/*').as('getComment')
 
-    // we have code that gets a comment when
+    // we have code that gets a comment-view when
     // the button is clicked in scripts.js
     cy.get('.network-btn').click()
 
@@ -131,7 +131,7 @@ context('Network Requests', () => {
     // Listen to POST to comments
     cy.intercept('POST', '**/comments').as('postComment')
 
-    // we have code that posts a comment when
+    // we have code that posts a comment-view when
     // the button is clicked in scripts.js
     cy.get('.network-post').click()
     cy.wait('@postComment').should(({ request, response }) => {
@@ -151,13 +151,13 @@ context('Network Requests', () => {
       delayMs: 500,
     }).as('putComment')
 
-    // we have code that puts a comment when
+    // we have code that puts a comment-view when
     // the button is clicked in scripts.js
     cy.get('.network-put').click()
 
     cy.wait('@putComment')
 
     // our 404 statusCode logic in scripts.js executed
-    cy.get('.network-put-comment').should('contain', message)
+    cy.get('.network-put-comment-view').should('contain', message)
   })
 })

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BulletinCreatorComponent } from './bulletin-creator.component';
+import { BulletinCreatorContainerComponent } from './bulletin-creator-container.component';
 
 describe('BulletinCreatorComponent', () => {
-  let component: BulletinCreatorComponent;
-  let fixture: ComponentFixture<BulletinCreatorComponent>;
+  let component: BulletinCreatorContainerComponent;
+  let fixture: ComponentFixture<BulletinCreatorContainerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BulletinCreatorComponent ]
+      declarations: [ BulletinCreatorContainerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BulletinCreatorComponent);
+    fixture = TestBed.createComponent(BulletinCreatorContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

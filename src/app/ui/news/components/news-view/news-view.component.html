@@ -2,13 +2,26 @@
   <article class="news-box">
     <div class="news-card">
       <div class="news-card-header">
-        <h3>Gary Franco</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-           enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+        <img src="/assets/img/img_avatar.png"
+             alt="Avatar"
+             class="news-container-avatar">
+        <div>
+          <strong><p class="news-username">{{user?.username}}</p></strong>
+          <p class="news-date">{{bulletin?.createdDate}}</p>
+        </div>
+        <div class="news-container-dropdown">
+          <ul class="news-container-dropbtn"
+              onclick="showDropdown()">
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
       </div>
       <div class="news-card-body">
-        <img class="news-card-header-img"
-             src="https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+        <img class="news-card-img"
+             [src]="bulletin?.fileUrl">
+        <p class="news-card-description">{{bulletin?.body}}</p>
       </div>
       <div class="news-card-footer">
         <button class="news-btn-option">
@@ -16,7 +29,8 @@
             favorite
           </span>
         </button>
-        <button class="news-btn-option">
+        <button class="news-btn-option"
+                (click)="showComments()">
           <span class="material-icons">
             chat
           </span>
@@ -27,6 +41,14 @@
           </span>
         </button>
       </div>
+      <section class="news-card-comments">
+        <app-comment-creator *ngIf="isLoadComments"
+                             [bulletin]="bulletin"></app-comment-creator>
+      </section>
+      <section class="comments">
+        <app-comment *ngFor="let comment of comments | async"
+                     [comment]="comment"></app-comment>
+      </section>
     </div>
   </article>
 </section>

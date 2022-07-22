@@ -1,19 +1,36 @@
-import {createBulletin, loadBulletins, loadBulletinsSuccess} from '../actions/bulletin.actions';
-import {BulletinStates} from '../states/bulletin.states';
 import {createReducer, on} from '@ngrx/store';
+import {createBulletinSuccess, loadBulletins, loadBulletinsSuccess} from '../actions/bulletin.actions';
+import {bulletinEntityAdapter} from '../adapters/bulletin.adapter';
+import {BulletinStates} from '../states/bulletin.states';
 
-export const initialState: BulletinStates = {loadingList: false, bulletins: [], pageNo: 0, pageSize: 5};
+export const initialState: BulletinStates = bulletinEntityAdapter.getInitialState();
+
+// export const bulletinFeature = createFeature({
+//   name: 'bulletins',
+//   reducer: createReducer(
+//     initialState,
+//     on(loadBulletins, (state) => {
+//       return {...state, loadingList: true};
+//     }),
+//     on(loadBulletinsSuccess, (state, {bulletins}) => {
+//       return bulletinEntityAdapter.addMany(bulletins!, {...state, loadingList: false})
+//     }),
+//     on(createBulletin, (state, {bulletin}) => {
+//       return bulletinEntityAdapter.addOne(bulletin!, {...state})
+//     }),
+//   ),
+// });
 
 export const _bulletinReducer = createReducer(
   initialState,
   on(loadBulletins, (state) => {
-    return {...state, loading: true};
+    return {...state, loadingList: true};
   }),
   on(loadBulletinsSuccess, (state, {bulletins}) => {
-    return {...state, loading: false, bulletins: bulletins}
+    return bulletinEntityAdapter.addMany(bulletins!, {...state, loadingList: false})
   }),
-  on(createBulletin, (state, {bulletin}) => {
-    return {...state, bulletins: [...state.bulletins!, bulletin]}
+  on(createBulletinSuccess, (state ,{bulletin})=>{
+    return bulletinEntityAdapter.addOne(bulletin!, {...state})
   })
 );
 
