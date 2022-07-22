@@ -13,8 +13,7 @@ import {selectLoadBulettins} from '../../../../infraestructure/store/selectors/b
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IndexNewsComponent implements OnInit, AfterViewInit {
-  public bulletins?: Bulletin[];
-  public obser?: Observable<Bulletin[]>;
+  public bulletins?: Observable<Bulletin[]>;
 
   constructor(private _store: Store<AppStates>) {
   }
@@ -35,7 +34,7 @@ export class IndexNewsComponent implements OnInit, AfterViewInit {
   }
 
   private _listenLoadBulletins(): void {
-    this.obser = this._store.select(selectLoadBulettins) as Observable<Bulletin[]>;
+    this.bulletins = this._store.select(selectLoadBulettins) as Observable<Bulletin[]>;
   }
 
   private _initialize(): void {

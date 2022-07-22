@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
   }
 
   _redirectToNews() {
-    this._router.navigateByUrl('/news')
+    this._router.navigateByUrl('/news-view')
   }
 
   _saveCookie(authorization: Authorization) {
