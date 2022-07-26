@@ -5,7 +5,7 @@ import {Comment} from '../models/comment/Comment';
 import {CommentResponse} from '../models/comment/CommentResponse';
 import {CommentGateway} from '../models/comment/gateway/comment-gateway';
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class GetCommentUseCase {
   constructor(private _commentGateway: CommentGateway) {
   }

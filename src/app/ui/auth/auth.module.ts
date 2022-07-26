@@ -1,6 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {EffectsModule} from '@ngrx/effects';
+import {GetUserUseCase} from '../../domain/usecase/get-user-usecase';
 import {UserEffects} from '../../infraestructure/store/effects/user.effects';
 import {SharedModule} from '../shared/shared.module';
 
@@ -20,6 +21,9 @@ import {RegisterContainerComponent} from './pages/register-container/register-co
     SharedModule,
     EffectsModule.forFeature([UserEffects]),
   ],
+  providers: [
+    GetUserUseCase
+  ]
 })
 export class AuthModule {
 }

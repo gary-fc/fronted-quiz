@@ -7,7 +7,7 @@ import {UserGateway} from '../models/user/gateway/user-gateway';
 import {User} from '../models/user/User';
 import {UserRegisterResponse} from '../models/user/UserRegisterResponse';
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class GetUserUseCase {
   constructor(private _userGateway: UserGateway) {
   }

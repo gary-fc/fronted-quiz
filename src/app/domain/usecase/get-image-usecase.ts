@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {ImageGateway} from '../models/images/gateway/image-gateway';
 import {Image} from '../models/images/Image';
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class GetImageUseCase {
 
 
