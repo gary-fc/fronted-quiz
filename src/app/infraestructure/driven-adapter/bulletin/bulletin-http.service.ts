@@ -12,11 +12,11 @@ export class BulletinHttpService extends BulletinGateway {
   }
 
   public createBulletin(bulletin: Bulletin): Observable<HttpResponse<Bulletin>> {
-    return this._http.post<Bulletin>(`${environment.base_url_bulletin}/api/bulletins`, bulletin, {observe: 'response'});
+    return this._http.post<Bulletin>(`${environment.base_url_bulletin}/api-news/bulletins`, bulletin, {observe: 'response'});
   }
 
   public getListBulletins(pageNo: number, pageSize: number): Observable<HttpResponse<Array<Bulletin>>> {
-    return this._http.get<Array<Bulletin>>(`${environment.base_url_bulletin}/api/searches/bulletins/page?pageNo=${pageNo}&pageSize=${pageSize}`, {
+    return this._http.get<Array<Bulletin>>(`${environment.base_url_bulletin}/api-news/searches/bulletins/page?pageNo=${pageNo}&pageSize=${pageSize}`, {
       observe: 'response'
     });
   }

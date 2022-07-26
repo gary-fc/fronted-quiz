@@ -47,7 +47,7 @@ export class CommentCreatorContainerComponent implements OnInit, AfterViewInit, 
       senderUserId: 0
     };
 
-    this._store.dispatch(createComment({bulletinId: this.bulletin?.id!, comment: comment}))
+    this._store.dispatch(createComment({bulletinId: this.bulletin?.bulletinId!, comment: comment}))
   }
 
   private _getUser(): void {

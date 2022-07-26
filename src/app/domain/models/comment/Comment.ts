@@ -3,4 +3,5 @@ export interface Comment {
   content?: string;
   senderUserId?: number;
   commentId?: number;
+
 }

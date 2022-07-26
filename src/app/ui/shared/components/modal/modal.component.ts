@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {Bulletin} from '../../../../domain/models/bulletin/Bulletin';
 import {SwitchService} from '../../../../infraestructure/driven-adapter/switch/switch.service';
 import {createBulletin} from '../../../../infraestructure/store/actions/bulletin.actions';
@@ -12,7 +12,7 @@ import jwt_decode from 'jwt-decode';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.sass']
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(private switchModalService: SwitchService, private _store: Store<AppStates>, private _cookieService: CookieService) {
   }

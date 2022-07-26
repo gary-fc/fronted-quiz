@@ -27,7 +27,6 @@ export class NewsViewComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
   }
 
   ngAfterViewInit(): void {
@@ -43,27 +42,18 @@ export class NewsViewComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public loadComments() {
-    this._store.dispatch(loadComments({bulletinId: this.bulletin?.id!}))
-  }
-
-  private _getUser() {
-    this._getUserUseCase.getUserByAccountId(this.bulletin?.accountId!).subscribe((resp) => {
-      this.user = resp.body!;
-      this._cdRef.markForCheck();
-    })
+    this._store.dispatch(loadComments({bulletinId: this.bulletin?.bulletinId!}))
   }
 
   private _listenLoadComments(): void {
-    this.comments = this._store.select(selectCommentsByBulletin(this.bulletin?.id!));
+    this.comments = this._store.select(selectCommentsByBulletin(this.bulletin?.bulletinId!));
   }
 
   private _initialize(): void {
     this._listenLoadComments();
     this.loadComments();
-    this._getUser()
   }
 
   private _finalize(): void {
-
   }
 }

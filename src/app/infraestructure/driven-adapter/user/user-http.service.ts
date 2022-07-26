@@ -17,21 +17,21 @@ export class UserHttpService extends UserGateway {
   }
 
   public login(credentials: Credentials): Observable<HttpResponse<Authorization>> {
-    return this._http.post<Authorization>(`${environment.base_url_auth}/api/auth/login`, credentials, {
+    return this._http.post<Authorization>(`${environment.base_url_auth}/api-user/auth/login`, credentials, {
       observe: 'response',
       headers: {skip: 'true'}
     });
   }
 
   public registerUser(user: User): Observable<HttpResponse<UserRegisterResponse>> {
-    return this._http.post<UserRegisterResponse>(`${environment.base_url_auth}/api/auth/register`, user, {
+    return this._http.post<UserRegisterResponse>(`${environment.base_url_auth}/api-user/auth/register`, user, {
       observe: 'response',
       headers: {skip: 'true'}
     });
   }
 
   public getUserByAccountId(accountId: number): Observable<HttpResponse<User>> {
-    return this._http.get(`${environment.base_url_auth}/api/users/byAccountId/${accountId}`,
+    return this._http.get(`${environment.base_url_auth}/api-user/users/byAccountId/${accountId}`,
       {observe: 'response', headers: {skip: 'true'}})
   }
 }

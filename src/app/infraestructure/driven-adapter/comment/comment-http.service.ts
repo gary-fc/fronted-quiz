@@ -16,10 +16,10 @@ export class CommentHttpService extends CommentGateway {
   }
 
   createComment(bulletinId: number, comment: Comment): Observable<HttpResponse<CommentResponse>> {
-    return this._http.post(`${environment.base_url_bulletin}/api/bulletins/${bulletinId}/comments/`, comment, {observe: 'response'})
+    return this._http.post(`${environment.base_url_bulletin}/api-news/comments/${bulletinId}`, comment, {observe: 'response'})
   }
 
   getListComments(bulletinId: number): Observable<HttpResponse<CommentResponse[]>> {
-    return this._http.get<CommentResponse[]>(`${environment.base_url_bulletin}/api/searches/comments/${bulletinId}`, {observe: 'response'})
+    return this._http.get<CommentResponse[]>(`${environment.base_url_bulletin}/api-news/searches/comments/${bulletinId}`, {observe: 'response'})
   }
 }

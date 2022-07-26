@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Comment} from '../../../../domain/models/comment/Comment';
+import {CommentResponse} from '../../../../domain/models/comment/CommentResponse';
 
 @Component({
   selector: 'app-comment',
@@ -8,7 +9,7 @@ import {Comment} from '../../../../domain/models/comment/Comment';
 })
 export class CommentViewComponent implements OnInit {
 
-  @Input() comment?: Comment;
+  @Input() comment?: CommentResponse;
 
   constructor() {
   }

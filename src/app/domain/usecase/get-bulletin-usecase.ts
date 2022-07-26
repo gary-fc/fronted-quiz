@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {Bulletin} from '../models/bulletin/Bulletin';
 import {BulletinGateway} from '../models/bulletin/gateway/bulletin-gateway';
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class GetBulletinUseCase {
   constructor(private _bulletinGateway: BulletinGateway) {
   }

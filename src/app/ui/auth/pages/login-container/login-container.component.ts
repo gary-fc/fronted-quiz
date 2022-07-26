@@ -42,7 +42,6 @@ export class LoginContainerComponent implements OnInit, AfterViewInit, OnDestroy
 
   public login(): void {
     let credentials: Credentials = this._getCredentials();
-    console.log(credentials);
     this._store.dispatch(userLogin({credentials: credentials}))
   }
 

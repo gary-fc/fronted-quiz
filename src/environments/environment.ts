@@ -4,9 +4,8 @@
 
 export const environment = {
   production: false,
-  base_url_auth: "http://localhost:8080",
-  base_url_bulletin: "http://localhost:8081"
-
+  base_url_auth: 'http://localhost:8001',
+  base_url_bulletin: 'http://localhost:8002'
 };
 
 /*

@@ -1,4 +1,4 @@
-<div class="news-ui-scroll-container">
+<section class="news-ui-scroll-container">
   <article class="index-news-container">
     <section class="index-news-item-left-panel">
     </section>
@@ -7,10 +7,11 @@
         <app-bulletin-creator></app-bulletin-creator>
       </section>
       <section class="index-news-bulletin-feed">
-        <app-news *ngFor="let bulletin of (bulletins | async)" [bulletin]="bulletin"></app-news>
+        <app-news *ngFor="let bulletin of (bulletins | async)"
+                  [bulletin]="bulletin"></app-news>
       </section>
     </section>
     <section class="index-news-item-right-panel">
     </section>
   </article>
-</div>
+</section>

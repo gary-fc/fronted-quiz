@@ -5,7 +5,7 @@ import {AuthGuard} from './infraestructure/guards/auth.guard';
 const routes: Routes = [
   {
     path: 'news-view',
-    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
     loadChildren: () =>
       import('./ui/news/news.module').then((m) => m.NewsModule),
   },
@@ -14,6 +14,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./ui/auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: '**',
+    redirectTo: 'news-view'
+  }
 ];
 
 @NgModule({

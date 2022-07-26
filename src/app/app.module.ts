@@ -38,9 +38,6 @@ import {SharedModule} from './ui/shared/shared.module';
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument(),
 
-    EffectsModule.forFeature([UserEffects]),
-
-
   ],
   exports: [AppRoutingModule],
   providers: [
